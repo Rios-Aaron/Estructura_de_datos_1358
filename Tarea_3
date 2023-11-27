@@ -1,0 +1,9 @@
+numero1 = bin(345)[2:]
+numero2 = bin(235)[2:]
+max_length = max(len(numero1), len(numero2))
+numero1 = numero1.zfill(max_length)
+numero2 = numero2.zfill(max_length)
+resultado_binario = bin(int(numero1, 2) + int(numero2, 2))[2:]
+print("Número 1 en binario:", numero1)
+print("Número 2 en binario:", numero2)
+print("Resultado en binario:", resultado_binario)
