@@ -1,0 +1,104 @@
+diccionarioA = {}
+diccionarioB = {"hola": 6}
+#Agregar datos
+diccionarioA["perro"] = "firulais"
+diccionarioB[3] = "gato"
+#Modificar datos
+diccionarioB["hola"] = {"vaca": 6, "burro": 10}
+diccionarioA["perro"] = "Moose"
+claves = list(diccionarioB.keys())
+valores = []
+for c in claves:
+    valores.append(diccionarioB[c])
+#Eliminar datos
+A = diccionarioB.pop("hola")
+diccionarioA.clear()
+#Función de hash
+def myHash(clave):
+    if type(clave) == int:
+    return clave
+    elif type(clave) == str:
+num = 0
+for e in clave:
+num += ord(e)
+return num
+# Consultar
+def consultar_diccionario(diccionario, clave):
+if clave in diccionario:
+return diccionario[clave]
+else:
+return None
+# Limpiar y borrar
+def limpiar_diccionario(diccionario):
+diccionario.clear() # Borramos todos los elementos del diccionario
+def borrar_elemento(diccionario, clave):
+if clave in diccionario:
+valor = diccionario.pop(clave) # Eliminamos la clave y devolvemos su valor
+return valor
+else:
+return None # Devolvemos None si la clave no existe en el diccionario
+# Consultar un dato en diccionarioA
+resultado_consulta = consultar_diccionario(diccionarioA, "perro")
+print("Resultado de la consulta en diccionarioA:", resultado_consulta)
+# Limpiar diccionarioA
+limpiar_diccionario(diccionarioA)
+
+
+
+
+
+
+
+
+class diccionario:
+    def __init__(self):
+        self.tamanioTabla=16
+        self.claves=[]
+        self.valores=[]
+        self.tablaHash=[]
+        for i in range(self.tamanioTabla):
+            self.tablaHash.append(None)
+
+    def funcionHash(self,clave,nuevoTamanio=0):
+        if nuevoTamanio==0:
+            return hash(clave)%self.tamanioTabla
+        else:
+            return hash(clave)%nuevoTamanio
+   
+    def agregar(self,clave,valor):
+        if self.tablaHash[self.funcionHash(clave)] is None:
+            self.tablaHash[self.funcionHash(clave)]=valor
+            self.claves.append(clave)
+            self.valores.append(valor)
+        else:
+            if(self.verificaClave(clave)):
+                self.valores.remove(self.tablaHash[self.funcionHash(clave)])
+                self.tablaHash[self.funcionHash(clave)]=valor
+                self.valores.append(valor)
+            else:
+                while(not self.tablaHash[self.funcionHash(clave)] is None):
+                    self.duplicaTamanio()
+                self.tablaHash[self.funcionHash(clave)]=valor
+                self.claves.append(clave)
+                self.valores.append(valor)
+   
+    def duplicaTamanio(self):
+        nuevaTabla=[]
+        for i in range(self.tamanioTabla*2):
+            nuevaTabla.append(None)
+        for c in self.claves:
+            nuevaTabla[self.funcionHash(c,self.tamanioTabla*2)]=self.tablaHash[self.funcionHash(c)]
+        self.tamanioTabla*=2
+        self.tablaHash=nuevaTabla
+   
+    def verificaClave(self,clave):
+        for c in self.claves:
+            if(type(c)==type(clave)):
+                if(c==clave):
+                    return True
+        return False
+print("DiccionarioA después de limpiar:", diccionarioA)
+# Borrar un elemento de diccionarioB
+elemento_borrado = borrar_elemento(diccionarioB, "hola")
+print("Elemento 'hola' eliminado de diccionarioB con valor:", elemento_borrado)
+print("DiccionarioB después de borrar elemento:", diccionarioB)
