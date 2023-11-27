@@ -1,0 +1,50 @@
+from collections import deque
+class Nodo:
+def __init__(self, valor, hijos):
+self.valor = valor
+self.hijos = hijos
+def bfs(root):
+if root is None:
+return
+queue = deque()
+queue.append(root)
+while queue:
+current = queue.popleft()
+print(current.valor)
+for child in current.hijos:
+queue.append(child)
+def dfs_preorden(node):
+if node is None:
+return
+print(node.valor) 
+for child in node.hijos:
+dfs_preorden(child)
+# Creación nodos
+A = Nodo("7", [])
+B = Nodo("5", [])
+C = Nodo("+", [A, B])
+D = Nodo("2", [])
+E = Nodo("*", [C, D])
+F = Nodo("1", [])
+G = Nodo("6", [])
+H = Nodo("-", [F, G])
+I = Nodo("9", [])
+J = Nodo("/", [H, I])
+K = Nodo("*", [E, J])
+# Clase Arbol
+class Arbol:
+def __init__(self, raiz):
+self.raiz = raiz
+# Creación árbol
+arb = Arbol(K)
+# Recorrido anchura (BFS)
+def recorrido_anchura(arbol):
+bfs(arbol.raiz)
+# Recorrido profundidad (DFS) - Preorden
+def recorrido_profundidad(arbol):
+dfs_preorden(arbol.raiz)
+# Ejecución recorridos
+print("Recorrido en Anchura (BFS):")
+recorrido_anchura(arb)
+print("\nRecorrido en Profundidad (DFS - Preorden):")
+recorrido_profundidad(arb)
