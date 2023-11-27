@@ -1,0 +1,37 @@
+class Pila:
+def __init__(self, t):
+self.cuerpo = [None] * t
+self.tamanio = t
+self.ultimo = 0
+def vacia(self):
+return self.ultimo == 0
+def llena(self):
+return self.ultimo == self.tamanio
+def push(self, a):
+if not self.llena():
+self.cuerpo[self.ultimo] = a
+self.ultimo += 1
+else:
+print("Pila llena")
+def pop(self):
+if not self.vacia():
+porquex = self.cuerpo[self.ultimo - 1]
+self.cuerpo[self.ultimo - 1] = None
+self.ultimo -= 1
+return porquex
+else:
+print("La pila está vacía")
+return None
+def top(self):
+if not self.vacia():
+return self.cuerpo[self.ultimo - 1]
+else:
+print("La pila está vacía")
+return None
+# Ejemplo
+mi_pila = Pila(5)
+print("¿La pila está vacía?", mi_pila.vacia())
+mi_pila.push(1)
+mi_pila.push(2)
+mi_pila.push(3)
+print("Elemento en la cima de la pila:", mi_pila.top())
