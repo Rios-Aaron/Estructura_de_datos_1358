@@ -1,0 +1,11 @@
+cola = []
+cola.append(1)
+cola.append(2)
+cola.append(3)
+print("Contenido de la cola:", cola)
+if len(cola) > 0:
+elemento = cola.pop(0)
+print("Elemento eliminado de la cola:", elemento)
+else:
+print("La cola está vacía.")
+print("Contenido de la cola despues de eliminar:", cola)
