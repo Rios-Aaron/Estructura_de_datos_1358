@@ -1,0 +1,9 @@
+pila = []
+# Para añadir elementos se ocupa (push)
+pila.append(1)
+pila.append(2)
+pila.append(3)
+print("Contenido de la pila:", pila)
+elemento = pila.pop()
+print("Elemento eliminado de la pila:", elemento)
+print("Contenido de la pila después de pop:", pila)
